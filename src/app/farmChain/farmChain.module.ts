@@ -10,5 +10,9 @@ import { BalanceComponent } from "./balance/balance.component";
     ],
     declarations :[ BalanceComponent ],
     exports : [ BalanceComponent ]
-})
-export class FarmChainModule{}
+})   
+export class FarmChainModule{
+    public constructor(){
+        console.log("FarmChainModule ctor");
+    } 
+}

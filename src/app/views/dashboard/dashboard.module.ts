@@ -6,16 +6,17 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
-import { BalanceComponent } from "./Balance/balance.component";
+import { FarmChainModule } from "../../farmChain/farmChain.module";
 
 @NgModule({
   imports: [
-    FormsModule,
+    FormsModule,  
     DashboardRoutingModule,
     ChartsModule,
     BsDropdownModule,
-    ButtonsModule.forRoot(),
-  ],
-  declarations: [ DashboardComponent, BalanceComponent ]
+    ButtonsModule.forRoot(), 
+    FarmChainModule
+  ], 
+  declarations: [ DashboardComponent ]
 })
 export class DashboardModule { }

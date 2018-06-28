@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 export class BalanceComponent implements OnInit {
   balance : number;
 
+  public constructor(){
+    console.log("BalanceComponent ctor");
+  }
   ngOnInit(): void {
-    this.balance = 1000;  
+    this.balance = 100;   
   }
 }
