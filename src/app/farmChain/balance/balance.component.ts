@@ -9,9 +9,22 @@ export class BalanceComponent implements OnInit {
   balance : number;
 
   public constructor(private farmChainService : FarmChainService){
-    this.farmChainService.initializeContract();
+    this.farmChainService.initializeContract().then( () => {
+      this.getBalance();
+    });
   }
+  
   ngOnInit(): void {
-    this.balance = 100;   
+    this.balance = 0;   
+  }
+
+  private getBalance() : void {
+    var balance = this.farmChainService.getBalance((err : Error, balance : number) => {
+			if(err != null){
+				console.error(err);
+				return;
+			}
+      this.balance = balance;
+		});
   }
 }

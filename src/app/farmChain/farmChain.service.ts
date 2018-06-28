@@ -48,6 +48,20 @@ export class FarmChainService{
     });
 	}
 
+	public async getBalance(callback : (err : Error, balance : number) => void){
+		try {
+			this.web3Service.getAccounts(async (error : Error, accs : string[]) => {
+				const contract = await this.FarmChain.deployed();
+
+				var result : number = await contract.balanceOf(accs[0]);
+				callback(null, result as number);
+			});
+		} catch (error) {
+			console.error(error);
+			callback(error, null);
+		}
+	}
+
 	public async filterAll() : Promise<void>{
 		var options  = {
 			fromBlock: 0, 
