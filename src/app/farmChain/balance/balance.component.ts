@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FarmChainService } from "../farmChain.service";
 
 @Component({
   selector: '[balance]',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class BalanceComponent implements OnInit {
   balance : number;
 
-  public constructor(){
-    console.log("BalanceComponent ctor");
+  public constructor(private farmChainService : FarmChainService){
+    this.farmChainService.initializeContract();
   }
   ngOnInit(): void {
     this.balance = 100;   

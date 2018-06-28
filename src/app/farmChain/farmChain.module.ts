@@ -13,6 +13,5 @@ import { BalanceComponent } from "./balance/balance.component";
 })   
 export class FarmChainModule{
     public constructor(){
-        console.log("FarmChainModule ctor");
     } 
 }

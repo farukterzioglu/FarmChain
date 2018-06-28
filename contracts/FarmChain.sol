@@ -2,11 +2,11 @@ pragma solidity ^0.4.24;
 
 import "openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 
-contract TutorialToken is StandardToken{
-  string public name = "TutorialToken";
-  string public symbol = "TT";
+contract FarmChain is StandardToken{
+  string public name = "FarmChain";
+  string public symbol = "FaCha";
   uint8 public decimals = 2;
-  uint public INITIAL_SUPPLY = 12000;
+  uint public INITIAL_SUPPLY = 100000000;
 
   constructor() public {
     totalSupply_ = INITIAL_SUPPLY;

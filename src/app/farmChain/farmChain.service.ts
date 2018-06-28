@@ -5,7 +5,7 @@ import { Observable, Subject } from "rxjs";
 import { tryParse } from "selenium-webdriver/http";
 
 declare let require: any;
-const contractArtifacts = require("../../../build/contracts/TutorialToken.json");
+const contractArtifacts = require("../../../build/contracts/FarmChain.json");
 
 @Injectable({providedIn: 'root'})
 export class FarmChainService{
