@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FarmChainService } from "../farmChain.service";
-import { User } from "../User";
+import { User } from "../models/user";
+import { Farm } from "../models/farm";
 
 @Component({
   selector: '[balance]',
   templateUrl: './register.component.html'
 })
-export class RegisterComponent {
+export class FarmListComponent {
 
   public constructor(private farmChainService : FarmChainService){
     this.farmChainService.initializeContract().then( () => {
