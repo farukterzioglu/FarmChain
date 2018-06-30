@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header">
+    Create Product
+  </div>
+  <div class="card-body">
+    <div class="form-group row">
+      <label for="btn-told" class="col-sm-2 col-form-label">Title</label>
+      <div class="col-sm-10">
+          <input maxlength="50"  (keyup)="getFarmName(titleTB.value)" value="{{title}}" #titleTB id="farmName" class="form-control" placeholder="Title">
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <label for="textHash" class="col-sm-2 col-form-label">Price</label>
+      <div class="col-sm-10">
+        <input maxlength="50"  (keyup)="getLocationName(priceTB.value)" value="{{price}}" #priceTB id="price" class="form-control" placeholder="Price">
+      </div>
+    </div>
+
+    <button (click)="createProduct()" class="btn btn-primary btn-told">Submit</button>
+  </div>
+</div>
