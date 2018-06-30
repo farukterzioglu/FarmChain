@@ -55,8 +55,9 @@ export class MarketPlaceService{
 			const contract = await this.MarketPlaceContract.deployed();
 			
 			let promise = contract.createNewProduct(
-				this.web3Service.web3.fromAscii(product.ProductName), 
-				this.web3Service.web3.fromAscii(product.ProductType), 
+				this.web3Service.web3.fromAscii(product.Name), 
+				this.web3Service.web3.fromAscii(product.Type), 
+				this.web3Service.web3.fromAscii(product.Price), 
 				{from : this.account});
 
 			let result = await promise;	
