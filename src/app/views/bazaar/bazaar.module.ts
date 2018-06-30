@@ -7,6 +7,8 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BazaarComponent } from './bazaar.component';
 import { BazaarRoutingModule } from './bazaar-routing.module';
 
+import { CreateProductComponent } from "../../farmChain/marketplace/createProduct.component";
+
 @NgModule({
   imports: [
     FormsModule,
@@ -15,6 +17,6 @@ import { BazaarRoutingModule } from './bazaar-routing.module';
     BsDropdownModule,
     ButtonsModule.forRoot()
   ],
-  declarations: [ BazaarComponent ]
+  declarations: [ BazaarComponent, CreateProductComponent ]
 })
 export class BazaarModule { }
