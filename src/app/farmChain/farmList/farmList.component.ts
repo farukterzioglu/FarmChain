@@ -18,35 +18,31 @@ export class FarmlistComponent {
     
     this.farmChainService.initializeContract().then( () => {
       this.getFarmList();
-
-      this.FarmList.push({
-        UserName : "string",
-        UserAddress : "string", 
-        FarmName : "string",
-        Location : "string"
-      });
-
-      console.log(this.FarmList);
     });
   }
 
   public createFarm(){
-    console.log(this.farmName);
-    console.log(this.farmLocation);
-    
     let farm : Farm = {
       UserName : "",
       UserAddress : "",
       FarmName : this.farmName,
       Location : this.farmLocation
      };
+console.log(farm);
 
     this.farmChainService.createFarm(farm);
   }
 
   public async getFarmList() : Promise<void> {
-    var farmList = await this.farmChainService.getFarmCount();
-    console.log(farmList.toString()); 
+    this.FarmList = new Array<Farm>();
+
+    var count = await this.farmChainService.getFarmCount();
+
+    for (let index = count - 1 ; index >= 0; index--) {
+      const farm = await this.farmChainService.getFarm(index);
+      this.FarmList.push(farm);
+    }
+    console.log(this.FarmList); 
   }
 
   getFarmName(term : string): void {

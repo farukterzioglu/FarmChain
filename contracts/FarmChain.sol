@@ -38,14 +38,14 @@ contract FarmChain is StandardToken{
     
     // if(farms[msg.sender].UserAddress !=  address(0x0)) return;
 
-    farms[++farmCount] = Farm(userName, msg.sender, farmName, location);
+    farms[farmCount++] = Farm({ UserName : "test", UserAddress : msg.sender, FarmName : farmName, Location : location});
 
     emit LogCreateNewFarm(userName, msg.sender, farmName, location);    
   }
 
   function getfarm(uint id) public view returns (string UserName, address UserAddress, string FarmName, string Location) {
       Farm memory farm = farms[id];
-      return ("", address(0x0) , "", ""); 
+      return ("testUser", address(0x0) , farm.FarmName, farm.Location); 
   }
 
   function getFarmCount() external view returns(uint){

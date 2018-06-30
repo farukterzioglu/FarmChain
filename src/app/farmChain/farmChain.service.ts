@@ -60,13 +60,6 @@ export class FarmChainService{
 
 			let result = await promise;	
 			
-			let farmCreated : Farm = {
-				UserName : "string",
-				UserAddress : "string",
-				FarmName : "string",
-				Location : "string"
-			};
-
 			// this.newFarmObservable.next(farmCreated);
 			console.log("Farm creation transaction sent. Block : " + result.receipt.blockNumber);
 			
@@ -83,15 +76,21 @@ export class FarmChainService{
 		return deployedContrat.getFarmCount.call();
 	}
 
-	public async getFarmList(){
-		try {
-			const contract = await this.FarmChain.deployed();
-			// var result : number = await contract.;
-		} catch (error) {
-			console.error(error);
-		}
-	}
+	public async getFarm(index: number): Promise<any> {
+		if(!this.FarmChain) await this.initializeContract();
 
+		let contract = await this.FarmChain.deployed();
+		let farm = await contract.getfarm.call(index);
+		
+		let result : Farm = {
+			UserName : "string",
+			UserAddress : "string",
+			FarmName : this.web3Service.web3.toAscii(farm[2]),
+			Location : this.web3Service.web3.toAscii(farm[3])
+		}; 
+		return result;
+	}
+	
 	public async getBalance(callback : (err : Error, balance : number) => void){
 		try {
 			this.web3Service.getAccounts(async (error : Error, accs : string[]) => {
