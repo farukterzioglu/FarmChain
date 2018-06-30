@@ -1,0 +1,13 @@
+<div class="animated fadeIn" *ngIf="FarmList">
+  <div class="row" *ngFor="let farm of FarmList">
+    <div class="card">
+      <div class="card-header">
+        {{FarmName}}
+      </div>
+      <div class="card-body">
+        {{Location}}
+      </div>
+      <div class="card-footer"></div>
+    </div>
+  </div>
+</div>
