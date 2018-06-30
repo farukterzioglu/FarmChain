@@ -3,11 +3,10 @@ import { Injectable } from "@angular/core";
 import { Chicken } from "./chicken";
 import { Observable, Subject } from "rxjs";
 import { tryParse } from "selenium-webdriver/http";
-import { Farm } from "./models/farm";
 import { Product } from "./models/product";
 
 declare let require: any;
-const contractArtifacts = require("../../../build/contracts/FarmChain.json");
+const contractArtifacts = require("../../../build/contracts/MarketPlace.json");
 
 @Injectable({providedIn: 'root'})
 export class MarketPlaceService{
@@ -20,7 +19,7 @@ export class MarketPlaceService{
 
 	constructor(private web3Service : Web3Service){
 		this.accountsObservable = this.web3Service.accountsObservable;
-		// this.watchAccount();
+		this.watchAccount();
 	}
 	
 	public async initializeContract() : Promise<void>{
@@ -58,6 +57,7 @@ export class MarketPlaceService{
 				this.web3Service.web3.fromAscii(product.Name), 
 				this.web3Service.web3.fromAscii(product.Type), 
 				this.web3Service.web3.fromAscii(product.Price), 
+				this.web3Service.web3.fromAscii(product.ImageLink), 
 				{from : this.account});
 
 			let result = await promise;	
@@ -70,25 +70,32 @@ export class MarketPlaceService{
 		}
 	}
 
-	// public async getFarmCount() : Promise<number>{
-	// 	if(!this.FarmChain) await this.initializeContract();
+	public async getProductCount() : Promise<number>{
+		if(!this.MarketPlaceContract) await this.initializeContract();
 		
-	// 	const deployedContrat = await this.FarmChain.deployed();
-	// 	return deployedContrat.getFarmCount.call();
-	// }
+		const deployedContrat = await this.MarketPlaceContract.deployed();
+		return deployedContrat.getProductCount.call();
+	}
 
-	// public async getFarm(index: number): Promise<any> {
-	// 	if(!this.FarmChain) await this.initializeContract();
+	public async getProduct(index: number): Promise<any> {
+		if(!this.MarketPlaceContract) await this.initializeContract();
 
-	// 	let contract = await this.FarmChain.deployed();
-	// 	let farm = await contract.getfarm.call(index);
+		let contract = await this.MarketPlaceContract.deployed();
+		let product = await contract.getproduct.call(index);
 		
-	// 	let result : Farm = {
-	// 		UserName : "string",
-	// 		UserAddress : "string",
-	// 		FarmName : this.web3Service.web3.toAscii(farm[2]),
-	// 		Location : this.web3Service.web3.toAscii(farm[3])
-	// 	}; 
-	// 	return result;
-	// }
+		let result : Product = {
+			Type : this.web3Service.web3.toAscii(product[0]),
+			Name : this.web3Service.web3.toAscii(product[1]),
+			Price : this.web3Service.web3.toAscii(product[2]),
+			ImageLink : this.web3Service.web3.toAscii(product[3]),
+			Id : 0
+		}; 
+		return result;
+	}
+
+	private watchAccount() {
+    this.web3Service.accountsObservable.subscribe((accounts) => {
+			this.account = accounts[0];
+    });
+  }
 }

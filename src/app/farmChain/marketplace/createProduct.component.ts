@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FarmChainService } from "../farmChain.service";
 import { MarketPlaceService } from "../marketPlace.service";
-import { User } from "../models/user";
-import { Farm } from "../models/farm";
 import { Product } from "../models/product";
 
 @Component({
@@ -14,11 +12,14 @@ export class CreateProductComponent {
   farmId : number;
 
   title : string;
-  price : number;
+  price : string;
   imageLink : string;
 
-  public constructor(private farmChainService : FarmChainService){
-    console.log("createProduct init..."); 
+  public constructor(private marketPlaceService : MarketPlaceService){
+    console.log("CreateProduct component init..."); 
+    this.marketPlaceService.initializeContract().then( () => {
+
+    });
   }
 
   public createProduct(){
@@ -30,14 +31,15 @@ export class CreateProductComponent {
       ImageLink : this.imageLink
      };
       console.log(product);
-    // this.farmChainService.createFarm(product);
+
+      this.marketPlaceService.createProduct(product);
   }
 
   getTitle(term : string): void {
     this.title = term;
   }
 
-  getPrice(term : number): void {
+  getPrice(term : string): void {
     this.price = term;
   }
 

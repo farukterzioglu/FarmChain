@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FarmChainService } from "../farmChain.service";
+import { MarketPlaceService} from "../marketPlace.service";
 import { Product } from "../models/product";
-import { Farm } from "../models/farm";
 
 @Component({
   selector: '[marketplace]',
@@ -10,15 +9,26 @@ import { Farm } from "../models/farm";
 export class MarketplaceComponent { 
   ProductList : Product[] = new Array();
 
-  public constructor(private farmChainService : FarmChainService){
+  public constructor(private marketPlaceService : MarketPlaceService){
     console.log("Marketplace init...");
     
-    this.farmChainService.initializeContract().then( () => {
-      this.getFarmMarket();
+    this.marketPlaceService.initializeContract().then( () => {
+      this.getProductList();
     });
   }
 
-  public async getFarmMarket() : Promise<void> {
+  public async getProductList() : Promise<void> {
     this.ProductList = new Array<Product>();
+
+    var count = await this.marketPlaceService.getProductCount();
+    console.log(count.toString());
+
+    for (let index = count - 1 ; index >= 0; index--) {
+      const farm = await this.marketPlaceService.getProduct(index);
+      console.log(farm);
+      
+      this.ProductList.push(farm);
+    }
+    console.log(this.ProductList); 
   }
 }
