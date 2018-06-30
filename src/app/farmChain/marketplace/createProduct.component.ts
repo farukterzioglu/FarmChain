@@ -15,19 +15,33 @@ export class CreateProductComponent {
 
   title : string;
   price : number;
+  imageLink : string;
 
   public constructor(private farmChainService : FarmChainService){
-
     console.log("createProduct init..."); 
   }
 
   public createProduct(){
     let product : Product = {
-      ProductId : 1,
-      ProductType : "string",
-      ProductName : "string"
+      Id : 1,
+      Type : "string",
+      Name : this.title,
+      Price : this.price,
+      ImageLink : this.imageLink
      };
       console.log(product);
     // this.farmChainService.createFarm(product);
+  }
+
+  getTitle(term : string): void {
+    this.title = term;
+  }
+
+  getPrice(term : number): void {
+    this.price = term;
+  }
+
+  getImageLink(term : string): void {
+    this.imageLink = term;
   }
 }

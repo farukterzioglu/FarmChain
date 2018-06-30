@@ -4,17 +4,19 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
-import { MarketplaceComponent } from './marketplace.component';
-import { MarketplaceRoutingModule } from './marketplace-routing.module';
+import { BazaarComponent } from './bazaar.component';
+import { BazaarRoutingModule } from './bazaar-routing.module';
+
+import { CreateProductComponent } from "../../farmChain/marketplace/createProduct.component";
 
 @NgModule({
   imports: [
     FormsModule,
-    MarketplaceRoutingModule,
+    BazaarRoutingModule,
     ChartsModule,
     BsDropdownModule,
     ButtonsModule.forRoot()
   ],
-  declarations: [ MarketplaceComponent ]
+  declarations: [ BazaarComponent, CreateProductComponent ]
 })
-export class MarketplaceModule { }
+export class BazaarModule { }

@@ -5,8 +5,8 @@ export const navItems = [
     icon: 'icon-speedometer'
   },
   {
-    name: 'Marketplace',
-    url: '/marketplace',
+    name: 'Bazaar',
+    url: '/bazaar',
     badge: {
       variant: 'info',
       text: 'NEW'

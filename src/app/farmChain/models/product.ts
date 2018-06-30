@@ -1,5 +1,7 @@
 export class Product{
-  ProductId : number;
-  ProductType : string;
-  ProductName : string;
+  Id : number;
+  Type : string;
+  Name : string;
+  Price : number;
+  ImageLink : string
 }
