@@ -16,6 +16,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'marketplace', 
+    redirectTo: 'marketplace',
+    pathMatch: 'full',
+  },
+  {
     path: '404',
     component: P404Component,
     data: {
@@ -65,6 +70,10 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
+      },
+      {
+        path: 'marketplace',
+        loadChildren: './views/marketplace/marketplace.module#MarketplaceModule'
       },
       // {
       //   path: 'icons',

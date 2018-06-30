@@ -18,18 +18,6 @@ export class FarmlistComponent {
     });
   }
 
-  public createFarm(){
-    let farm : Farm = {
-      UserName : "",
-      UserAddress : "",
-      FarmName : this.farmName,
-      Location : this.farmLocation
-     };
-console.log(farm);
-
-    this.farmChainService.createFarm(farm);
-  }
-
   public async getFarmList() : Promise<void> {
     this.FarmList = new Array<Farm>();
 
@@ -40,17 +28,5 @@ console.log(farm);
       this.FarmList.push(farm);
     }
     console.log(this.FarmList); 
-  }
-
-  getFarmName(term : string): void {
-    this.farmName = term;
-  }
-
-  getLocationName(term : string): void {
-    this.farmLocation = term;
-  }
-
-  public register(user : User) : void {
-    
   }
 }

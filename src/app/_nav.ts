@@ -3,7 +3,15 @@ export const navItems = [
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-speedometer'
-  }
+  },
+  {
+    name: 'Marketplace',
+    url: '/marketplace',
+    badge: {
+      variant: 'info',
+      text: 'NEW'
+    }
+  },
 ]
 
 export const _navItems = [
