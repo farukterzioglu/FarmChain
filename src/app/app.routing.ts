@@ -16,8 +16,8 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'marketplace', 
-    redirectTo: 'marketplace',
+    path: 'Bazaar', 
+    redirectTo: 'bazaar',
     pathMatch: 'full',
   },
   {
@@ -72,8 +72,8 @@ export const routes: Routes = [
         loadChildren: './views/dashboard/dashboard.module#DashboardModule'
       },
       {
-        path: 'marketplace',
-        loadChildren: './views/marketplace/marketplace.module#MarketplaceModule'
+        path: 'bazaar',
+        loadChildren: './views/bazaar/bazaar.module#BazaarModule'
       },
       // {
       //   path: 'icons',
