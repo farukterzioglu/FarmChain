@@ -1,7 +1,22 @@
 <div class="card">
-  <div class="card-body p-3 clearfix">
-    <i class="fa fa-cogs bg-primary p-3 font-2xl mr-3 float-left"></i>
-    <div class="h5 text-primary mb-0 mt-2">${{balance}}</div>
-    <div class="text-muted text-uppercase font-weight-bold font-xs">Balance</div>
+  <div class="card-header">
+    Create Farm
+  </div>
+  <div class="card-body">
+    <div class="form-group row">
+      <label for="btn-told" class="col-sm-2 col-form-label">Farm Name</label>
+      <div class="col-sm-10">
+          <input maxlength="50"  (keyup)="getFarmName(farmNameTB.value)" value="{{farmName}}" #farmNameTB id="farmName" class="form-control" placeholder="Farm name">
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <label for="textHash" class="col-sm-2 col-form-label">Location</label>
+      <div class="col-sm-10">
+        <input maxlength="50"  (keyup)="getLocationName(farmLocationTB.value)" value="{{farmLocation}}" #farmLocationTB id="farmLocation" class="form-control" placeholder="Farm name">
+      </div>
+    </div>
+
+    <button (click)="createFarm()" class="btn btn-primary btn-told">Submit</button>
   </div>
 </div>

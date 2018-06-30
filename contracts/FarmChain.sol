@@ -16,8 +16,9 @@ contract FarmChain is StandardToken{
     string FarmName;
     string Location;
   }
-
-  mapping(address => Farm) farms;
+  
+  uint farmCount = 0;
+  mapping(uint => Farm) farms;
 
   constructor() public {
     // StandardToken implemantations
@@ -35,10 +36,19 @@ contract FarmChain is StandardToken{
     //TODO : check and get user registration 
     string memory userName = "TODO";
     
-    if(farms[msg.sender].UserAddress !=  address(0x0)) return;
+    // if(farms[msg.sender].UserAddress !=  address(0x0)) return;
 
-    farms[msg.sender] = Farm(userName, msg.sender, farmName, location);
-        
+    farms[++farmCount] = Farm(userName, msg.sender, farmName, location);
+
     emit LogCreateNewFarm(userName, msg.sender, farmName, location);    
+  }
+
+  function getfarm(uint id) public view returns (string UserName, address UserAddress, string FarmName, string Location) {
+      Farm memory farm = farms[id];
+      return ("", address(0x0) , "", ""); 
+  }
+
+  function getFarmCount() external view returns(uint){
+      return farmCount;
   }
 }

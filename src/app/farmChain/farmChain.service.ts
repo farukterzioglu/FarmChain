@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Chicken } from "./chicken";
 import { Observable, Subject } from "rxjs";
 import { tryParse } from "selenium-webdriver/http";
+import { Farm } from "./models/farm";
 
 declare let require: any;
 const contractArtifacts = require("../../../build/contracts/FarmChain.json");
@@ -14,7 +15,7 @@ export class FarmChainService{
 	account : any;
 
 	public accountsObservable = new Subject<string[]>();
-	public dataObservable = new Subject<any[]>();
+	public newFarmObservable = new Subject<Farm>();
 
 	constructor(private web3Service : Web3Service){
 		this.accountsObservable = this.web3Service.accountsObservable;
@@ -46,6 +47,49 @@ export class FarmChainService{
 			console.log("Contract created.");
 			this.initializing = false;
     });
+	}
+	
+	public async createFarm(farm :Farm){
+		try {
+			const contract = await this.FarmChain.deployed();
+			
+			let promise = contract.createNewFarm(
+				this.web3Service.web3.fromAscii(farm.FarmName), 
+				this.web3Service.web3.fromAscii(farm.Location), 
+				{from : this.account});
+
+			let result = await promise;	
+			
+			let farmCreated : Farm = {
+				UserName : "string",
+				UserAddress : "string",
+				FarmName : "string",
+				Location : "string"
+			};
+
+			// this.newFarmObservable.next(farmCreated);
+			console.log("Farm creation transaction sent. Block : " + result.receipt.blockNumber);
+			
+			return promise;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	public async getFarmCount() : Promise<number>{
+		if(!this.FarmChain) await this.initializeContract();
+		
+		const deployedContrat = await this.FarmChain.deployed();
+		return deployedContrat.getFarmCount.call();
+	}
+
+	public async getFarmList(){
+		try {
+			const contract = await this.FarmChain.deployed();
+			// var result : number = await contract.;
+		} catch (error) {
+			console.error(error);
+		}
 	}
 
 	public async getBalance(callback : (err : Error, balance : number) => void){

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FarmChainService } from "../farmChain.service";
-import { User } from "../User";
+import { User } from "../models/user";
 
 @Component({
   selector: '[balance]',
