@@ -6,11 +6,7 @@ export const navItems = [
   },
   {
     name: 'Bazaar',
-    url: '/bazaar',
-    badge: {
-      variant: 'info',
-      text: 'NEW'
-    }
+    url: '/bazaar'
   },
   {
     name: 'My Farm',
