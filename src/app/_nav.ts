@@ -12,6 +12,11 @@ export const navItems = [
       text: 'NEW'
     }
   },
+  {
+    name: 'My Farm',
+    url: '/myfarm'
+  },
+  
 ]
 
 export const _navItems = [

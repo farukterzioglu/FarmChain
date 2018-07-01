@@ -55,9 +55,9 @@ export class MarketPlaceService{
 			
 			let promise = contract.createNewProduct(
 				this.web3Service.web3.fromAscii(product.Name), 
-				this.web3Service.web3.fromAscii(product.Type), 
 				this.web3Service.web3.fromAscii(product.Price), 
 				this.web3Service.web3.fromAscii(product.ImageLink), 
+				this.web3Service.web3.fromAscii(product.FarmName), 
 				{from : this.account});
 
 			let result = await promise;	
@@ -84,11 +84,11 @@ export class MarketPlaceService{
 		let product = await contract.getproduct.call(index);
 		
 		let result : Product = {
-			Type : this.web3Service.web3.toAscii(product[0]),
-			Name : this.web3Service.web3.toAscii(product[1]),
-			Price : this.web3Service.web3.toAscii(product[2]),
-			ImageLink : this.web3Service.web3.toAscii(product[3]),
-			Id : 0
+			Id : 0,
+			Name : this.web3Service.web3.toAscii(product[0]),
+			Price : this.web3Service.web3.toAscii(product[1]),
+			ImageLink : this.web3Service.web3.toAscii(product[2]),
+			FarmName : this.web3Service.web3.toAscii(product[3]),
 		}; 
 		return result;
 	}

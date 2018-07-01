@@ -7,28 +7,24 @@ import { Product } from "../models/product";
   selector: '[createproduct]',
   templateUrl: './createProduct.component.html'
 })
-export class CreateProductComponent {   
-  //TODO : get farm id 
-  farmId : number;
-
+export class CreateProductComponent {
   title : string;
   price : string;
   imageLink : string;
+  farmName: string;
 
   public constructor(private marketPlaceService : MarketPlaceService){
     console.log("CreateProduct component init..."); 
-    this.marketPlaceService.initializeContract().then( () => {
-
-    });
+    this.marketPlaceService.initializeContract().then( () => {});
   }
 
   public createProduct(){
     let product : Product = {
       Id : 1,
-      Type : "string",
       Name : this.title,
       Price : this.price,
-      ImageLink : this.imageLink
+      ImageLink : this.imageLink,
+      FarmName : this.farmName
      };
       console.log(product);
 
@@ -45,5 +41,9 @@ export class CreateProductComponent {
 
   getImageLink(term : string): void {
     this.imageLink = term;
+  }
+
+  getFarmName(term : string): void {
+    this.farmName = term;
   }
 }
