@@ -1,18 +1,31 @@
 <div class="animated fadeIn">
   <div class="row">
     <div class="col-md-6">
-      <div class="card">
+      <div class="card" style="height: 410px;">
         <div class="card-header">
           <strong>Farm Details</strong>
         </div>
         <div class="card-body">
           <h4 class="alert-heading">Hatçe Ananın Çiftliği</h4>
-          <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+          <p class="mb-0"></p>
+
+          <carousel [interval]="3000">
+            <slide>
+              <img src="https://i.ytimg.com/vi/zc_1vpFGiBM/hqdefault.jpg" alt="First slide" style="display: block; height: 250px;">
+            </slide>
+            <slide>
+              <img src="https://emlakkulisi.com/resim/orjinal/MTI5MTg4MD.jpg" alt="Second slide" style="display: block; height: 250px;">
+            </slide>
+            <slide>
+              <img src="http://www.seydisehirajans.com/files/uploads/news/default/konyada-alpaka-ciftl-0fc037e56e3822bb659a.jpg" alt="Third slide" 
+              style="display: block; height: 250px;">
+            </slide>
+          </carousel>  
         </div>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="card">
+      <div class="card" style="height: 410px;">
         <div class="card-header">
           <strong>Farm Location</strong>
         </div>

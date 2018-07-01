@@ -11,6 +11,9 @@ import { FarmDetailRoutingModule } from './farmDetail-routing.module';
 import { Component } from '@angular/core';
 import { AgmCoreModule } from '@agm/core';
 
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselsComponent } from './carousels.component';
+
 @Component({
   selector: 'mapp',
   styles: [`
@@ -67,8 +70,9 @@ interface marker {
     FarmDetailRoutingModule,
     ChartsModule,
     BsDropdownModule,
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    CarouselModule.forRoot(),
   ],
-  declarations: [ FarmDetailComponent, MAppComponent ]
+  declarations: [ FarmDetailComponent, MAppComponent, CarouselsComponent ]
 })
 export class FarmDetailModule { }
