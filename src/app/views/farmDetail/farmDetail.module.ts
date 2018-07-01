@@ -18,7 +18,7 @@ import { CarouselsComponent } from './carousels.component';
   selector: 'mapp',
   styles: [`
     agm-map {
-      height: 300px;
+      height: 200px;
     }
   `],
   template: `
