@@ -35,6 +35,10 @@ contract MarketPlace {
       return (farm.Name , farm.Price, farm.ImageLink, farm.FarmName); 
   }
 
+  function buyProduct() external{
+
+  }
+  
   function getProductCount() external view returns(uint){
       return productCount;
   }

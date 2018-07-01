@@ -16,7 +16,10 @@ export const navItems = [
     name: 'My Farm',
     url: '/myfarm'
   },
-  
+  {
+    name: 'Farm Detail',
+    url: '/farmDetail'
+  },
 ]
 
 export const _navItems = [
