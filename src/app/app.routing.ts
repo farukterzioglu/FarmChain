@@ -26,6 +26,11 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'farmDetail', 
+    redirectTo: 'farmDetail',
+    pathMatch: 'full',
+  },
+  {
     path: '404',
     component: P404Component,
     data: {
@@ -83,6 +88,10 @@ export const routes: Routes = [
       {
         path: 'myfarm',
         loadChildren: './views/myfarm/myfarm.module#MyfarmModule'
+      },
+      {
+        path: 'farmDetail',
+        loadChildren: './views/farmDetail/farmDetail.module#FarmDetailModule'
       },
       // {
       //   path: 'icons',

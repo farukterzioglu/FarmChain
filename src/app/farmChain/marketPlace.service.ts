@@ -70,6 +70,18 @@ export class MarketPlaceService{
 		}
 	}
 
+	public async buyProduct(){
+		try {
+			console.log("buyProduct...");
+			
+			const contract = await this.MarketPlaceContract.deployed();
+			let promise = contract.buyProduct({from : this.account});
+			return promise;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+	
 	public async getProductCount() : Promise<number>{
 		if(!this.MarketPlaceContract) await this.initializeContract();
 		

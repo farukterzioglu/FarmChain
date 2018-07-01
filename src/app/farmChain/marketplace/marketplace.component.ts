@@ -31,4 +31,8 @@ export class MarketplaceComponent {
     }
     console.log(this.ProductList); 
   }
+
+  public buyProduct() : void {
+    this.marketPlaceService.buyProduct();
+  }
 }
