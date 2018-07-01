@@ -5,10 +5,10 @@ import "openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
 contract MarketPlace {
   //MarketPlace implemantations  
   struct Product{
-    string Type;
     string Name;
     string Price;
     string ImageLink;
+    string FarmName;
   }
   
   uint productCount = 0;
@@ -18,21 +18,21 @@ contract MarketPlace {
   constructor() public {}
 
   //Events 
-  event LogCreateNewProduct(string productName, string productType, string price, string imageLink, address sender);    
+  event LogCreateNewProduct(string productName, string price, string imageLink, address sender, string farmName);    
 
   //Public methods 
-  function createNewProduct(string productName, string productType, string price, string imageLink) external {
-    products[productCount] = Product({ Type : productType, Name : productName, Price : price, ImageLink : imageLink});
+  function createNewProduct(string productName, string price, string imageLink, string farmName) external {
+    products[productCount] = Product({ Name : productName, Price : price, ImageLink : imageLink, FarmName : farmName});
     productToOwner[productCount] = msg.sender;
 
     productCount++;
 
-    emit LogCreateNewProduct(productName, productType, price, imageLink, msg.sender);    
+    emit LogCreateNewProduct(productName, price, imageLink, msg.sender, farmName);    
   }
 
-  function getproduct(uint id) public view returns (string Type, string Name, string Price, string ImageLink) {
+  function getproduct(uint id) public view returns (string Name, string Price, string ImageLink, string FarmName) {
       Product memory farm = products[id];
-      return (farm.Type, farm.Name , farm.Price, farm.ImageLink); 
+      return (farm.Name , farm.Price, farm.ImageLink, farm.FarmName); 
   }
 
   function getProductCount() external view returns(uint){

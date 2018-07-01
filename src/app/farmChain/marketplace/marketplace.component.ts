@@ -24,10 +24,10 @@ export class MarketplaceComponent {
     console.log(count.toString());
 
     for (let index = count - 1 ; index >= 0; index--) {
-      const farm = await this.marketPlaceService.getProduct(index);
-      console.log(farm);
+      const product = await this.marketPlaceService.getProduct(index);
+      console.log(product);
       
-      this.ProductList.push(farm);
+      this.ProductList.push(product);
     }
     console.log(this.ProductList); 
   }

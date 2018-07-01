@@ -24,6 +24,13 @@
       </div>
     </div>
 
+    <div class="form-group row">
+      <label for="textHash" class="col-sm-2 col-form-label">Farm Name</label>
+      <div class="col-sm-10">
+        <input (keyup)="getFarmName(farmNameTB.value)" value="{{farmName}}" #farmNameTB id="farmName" class="form-control" placeholder="Farm Name">
+      </div>
+    </div>
+
     <button (click)="createProduct()" class="btn btn-primary btn-told">Submit</button>
   </div>
 </div>

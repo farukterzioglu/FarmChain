@@ -12,15 +12,15 @@
               <tr>
                 <th class="text-center"><i class="icon-people"></i></th>
                 <th>Product</th>
+                <th>Farm</th>
                 <th>Price</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let product of ProductList">
                 <td class="text-center">
-                  <div class="avatar">
-                    <img src="{{product.ImageLink}}" class="img-avatar" alt="" style="width: 150px; height: 100px; max-width: 100px;">
-                  </div>
+                  <img src="{{product.ImageLink}}" class="img-avatar" alt="" style="width: 150px; height: 100px; max-width: 100px;">
                 </td>
                 <td>
                   <div>{{product.Name}}</div>
@@ -29,7 +29,13 @@
                   </div>
                 </td>
                 <td>
-                  <div>{{product.Price}}</div>
+                  <div>{{product.FarmName}}</div>
+                </td>
+                <td>
+                  <div>{{product.Price}} FarmCoin </div>
+                </td>
+                <td>
+                  <a href="">BUY</a>
                 </td>
               </tr>
             </tbody>
