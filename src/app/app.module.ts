@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { DAppModule } from "./dApp/dApp.module";
+import { FarmChainModule } from "./farm-chain/farm-chain.module";
+import { Web3Service } from "./util/web3.service";
 
 @NgModule({
   declarations: [
@@ -11,9 +13,10 @@ import { DAppModule } from "./dApp/dApp.module";
   ],
   imports: [
     BrowserModule,
-    DAppModule
+    DAppModule,
+    FarmChainModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ Web3Service ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

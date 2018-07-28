@@ -1,5 +1,5 @@
-var MetaCoin = artifacts.require("MetaCoin");
+var FarmCoin = artifacts.require("FarmCoin");
 
 module.exports = function(deployer){
-    deployer.deploy(MetaCoin);
+    deployer.deploy(FarmCoin);
 }
