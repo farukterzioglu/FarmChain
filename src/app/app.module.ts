@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
-import { DAppModule } from "./dApp/dApp.module";
 import { FarmChainModule } from "./farm-chain/farm-chain.module";
 import { Web3Service } from "./util/web3.service";
 
@@ -13,7 +12,6 @@ import { Web3Service } from "./util/web3.service";
   ],
   imports: [
     BrowserModule,
-    DAppModule,
     FarmChainModule
   ],
   providers: [ Web3Service ],

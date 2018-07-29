@@ -1,3 +1,19 @@
-<p>
-  farm-coin works!
-</p>
+<div>
+  <h2>Balance</h2>
+  <div>
+    <p>You have <span id="balance">{{model.balance}}</span> FarmCoin</p>
+  </div>
+</div>
+
+<div>
+  <h2>Send FarmCoin</h2>
+  <input type="text" matInput id="amount" placeholder="Amount" 
+    (change)="setAmount($event)">
+  <div  class="address-field">
+      <input type="text" matInput id="receiver" placeholder="Receiver Address" 
+        (change)="setReceiver($event)">
+  </div>
+  <button mat-button id="send" (click)="sendCoin()">Send Farm Coin</button>
+</div>
+
+
