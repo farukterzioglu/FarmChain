@@ -10,15 +10,17 @@ contract Farm  is BasicToken, Ownable, Contactable {
   uint8 public decimals = 0;
 
   constructor(string _name,uint256 _totalSupply, address _owner) public {
-    require(owner != address(0), "Owner address is required!");
+    require(_owner != address(0), "Owner address is required!");
     require(bytes(_name).length != 0, "Name is required!");
     require(_totalSupply > 0, "Total supply should be bigger than 0");
     
     name = _name;
     totalSupply_ = _totalSupply;
-    balances[owner] = _totalSupply;
-
-    transferOwnership(_owner);
+    balances[msg.sender] = _totalSupply;
+    
+    //TODO : ???
+    // balances[_owner] = _totalSupply;
+    // transferOwnership(_owner);
   }
 
   /**
