@@ -23,6 +23,10 @@ contract Farm  is BasicToken, Ownable, Contactable {
     // transferOwnership(_owner);
   }
 
+  function name() public view returns (string){
+    return name;
+  }
+
   /**
    * @dev payable fallback
    */

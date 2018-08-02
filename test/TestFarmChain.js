@@ -12,23 +12,37 @@ contract('FarmChain', function([owner]) {
     farmCain.createFarm("test", 1000).then(async function (transactionHash) {
       // console.log(transactionHash); // useful for tracking
       var farm = await farmCain.ownerToFarm.call(owner);
-      //TODO : assert that farm isn't 0x000000...
-      console.log({farm});
+      console.log({farm}); //TODO : assert that farm isn't 0x000000...
       });
     });
 
-    //TODO : Fails, can not create contract from address
   it("should create the farm as a valid ERC20", function() {
-    farmCain.createFarm("test", 1000).then(async function (transactionHash) {
+    farmCain.createFarm("test farm", 1000).then(async function (transactionHash) {
       var contractAddress = await farmCain.ownerToFarm.call(owner);
-      console.log({contractAddress});
+      var farm = Farm.at(contractAddress);
+
+      var name = await farm.name.call();
+      console.log({name}); //TODO : assert name is equal
+
+      { //banging my head to the wall.... notes -> 
+      // var farm = await farmCain.getFarm.call(contractAddress);
       
-      console.log({Farm});
+      // console.log({contractAddress});
+      // console.log({farm});
       
-      var FarmContract = web3.eth.contract(Farm);
-      console.log({FarmContract});
+      // farm = Farm.at(contractAddress);
+
+      // var name =await farm.name.call();
+      // console.log({name});
       
-      var contractInstance = FarmContract.at(contractAddress);
+      // console.log({contractAddress});
+      
+      // console.log({Farm});
+      
+      // var FarmContract = web3.eth.contract(Farm);
+      // console.log({FarmContract});
+      
+      // var contractInstance = FarmContract.at(contractAddress);
       // console.log({contractInstance});
 
 
@@ -38,6 +52,17 @@ contract('FarmChain', function([owner]) {
       
       // var temp = new web3.eth.Contract(Farm, result);
       // console.log(temp);
+      }
+    });
+  });
+
+  it("should createget balance of Farm", function() {
+    farmCain.createFarm("test farm", 1000).then(async function (transactionHash) {
+      var contractAddress = await farmCain.ownerToFarm.call(owner);
+      var farm = Farm.at(contractAddress);
+
+      var balance = await farm.balanceOf.call(owner);
+      console.log({ balance : balance.toNumber()}); //TODO : assert
     });
   });
 

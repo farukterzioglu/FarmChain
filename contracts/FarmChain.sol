@@ -22,5 +22,10 @@ contract FarmChain{
     uint256 balance = farm.balanceOf(msg.sender);
     // require(balance == farm.totalSupply(), "Balance didn't set correctly!" ); //TODO : Assert ???
   }
+
+  function getFarm(address farmAddress) public returns (Farm){
+    Farm con = Farm(farmAddress);
+    return con;
+  }
   //TODO : Payable logic 
 }
