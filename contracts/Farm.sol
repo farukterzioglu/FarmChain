@@ -9,8 +9,6 @@ contract Farm  is BasicToken, Ownable, Contactable {
   string public symbol;
   uint8 public decimals = 0;
 
-  address creator_; 
-  address owner_; 
   constructor(string _name,uint256 _totalSupply, address _owner) public {
     require(_owner != address(0), "Owner address is required!");
     require(bytes(_name).length != 0, "Name is required!");
@@ -20,22 +18,7 @@ contract Farm  is BasicToken, Ownable, Contactable {
     totalSupply_ = _totalSupply;
     balances[_owner] = _totalSupply;
     
-    creator_ = msg.sender;
-    owner_ = _owner;
-    
     transferOwnership(_owner);
-  }
-
-  function owner2() public view returns (address){
-    return owner_;
-  }
-
-  function creator() public view returns (address){
-    return creator_;
-  }
-  
-  function name() public view returns (string){
-    return name;
   }
 
   /**

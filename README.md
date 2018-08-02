@@ -6,6 +6,6 @@ npm install -g ganache-cli
 
 npm install 
 
-truffle compile && truffle migrate
+truffle compile && truffle migrate && truffle test
 
 ng serve -o
