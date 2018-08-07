@@ -1,3 +1,13 @@
+/// <reference path="../node_modules/jasmine/lib/jasmine.js" />
+/// <reference path="../node_modules/chai/chai.js" />
+/// <reference path="../node_modules/chai/lib/chai.js" />
+/// <reference path="../node_modules/chai/lib/chai/assertion.js" />
+
+var chai = require('chai');  
+var assert = chai.assert;    // Using Assert style
+var expect = chai.expect;    // Using Expect style
+var should = chai.should();  // Using Should style
+
 var FarmChain = artifacts.require("FarmChain");
 var Farm = artifacts.require("Farm");
 
@@ -11,7 +21,7 @@ contract('farmChain.createFarm', function([account]) {
   it("should create new farm", function() {
     farmChain.createFarm("test", 1000).then(async function (transactionHash) {
       var farm = await farmChain.ownerToFarm.call(account);
-      console.log({farm : farm}); //TODO : assert that farm isn't 0x000000...
+      assert.notEqual(farm, "0x0000000000000000000000000000000000000000");
       });
     });
 
@@ -21,7 +31,7 @@ contract('farmChain.createFarm', function([account]) {
       var farm = Farm.at(contractAddress);
 
       var name = await farm.name.call();
-      console.log({name}); //TODO : assert name is equal
+      assert.equal(name, "test farm", "name is not correct");
     });
   });
 
@@ -31,7 +41,7 @@ contract('farmChain.createFarm', function([account]) {
       var farm = Farm.at(contractAddress);
 
       var totalSupply = await farm.totalSupply.call();
-      console.log({ expected : 1000, totalSupply : totalSupply.toNumber()}); //TODO : assert
+      assert.equal(totalSupply.toNumber(), 1000, "total balance is not correct");
     });
   });
 
@@ -41,7 +51,7 @@ contract('farmChain.createFarm', function([account]) {
       var farm = Farm.at(contractAddress);
 
       var balance = await farm.balanceOf(account);
-      console.error({ expected : 1000, balance : balance.toNumber()}); //TODO : assert
+      assert.equal(balance.toNumber(), 1000, "balance should be 1000");
     });
   });
 
@@ -51,8 +61,7 @@ contract('farmChain.createFarm', function([account]) {
       var farm = Farm.at(contractAddress);
 
       var farmOwner = await farm.owner.call();
-
-      console.log({ expected : account, farmOwner : farmOwner }); //TODO : assert 
+      assert.equal(account, farmOwner, "accounts should match");
     });
   });
 

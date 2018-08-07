@@ -1,4 +1,5 @@
 {
+  "allowJs" : true,
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -16,5 +17,12 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "typeAcquisition": {
+    "include": [
+        "jasmine-core",
+        "karma",
+        "karma-jasmine"
+    ]
+}
 }
