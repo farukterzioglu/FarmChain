@@ -57,6 +57,7 @@
     "ngx-bootstrap": "^3.0.0",
     "protractor": "~5.3.0",
     "rxjs": "^6.0.0",
+    "solc": "^0.4.24",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2",

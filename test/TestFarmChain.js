@@ -11,9 +11,10 @@ var should = chai.should();  // Using Should style
 var FarmChain = artifacts.require("FarmChain");
 var Farm = artifacts.require("Farm");
 
-contract('farmChain.createFarm', function([account]) {
+contract('farmChain.createFarm', function(accounts) {
   let farmChain;
-
+  let account = accounts[0];
+  
   beforeEach('setup contract for each test', async function () {
       farmChain = await FarmChain.new();
   })
@@ -65,22 +66,58 @@ contract('farmChain.createFarm', function([account]) {
     });
   });
 
-  it("should create farm through another contract", () => {});
+  it("should transfer from Farm", () => {
+    farmChain.createFarm("Test Farm", 1000).then(async () => {
+      var farmContractAddress = await farmChain.ownerToFarm(account);
+      var farm = Farm.at(farmContractAddress);
 
-  it("should get new farm", function() {
-    return FarmChain.deployed().then(async function(instance) {
-    })
+      await farm.transfer(accounts[1], 1000, { from: account }).then(async (trx) => {
+        let afterBalance = -1;
+        let account2Balance = -1;
+
+        afterBalance = await farm.balanceOf(account);
+        account2Balance = await farm.balanceOf(accounts[1]);
+
+        assert.equal(afterBalance.toNumber(), 0, "balance of account 1 should be 1000");
+        assert.equal(account2Balance.toNumber(), 1000, "balance of account 2 should be 1000");
+      });
+    });
   });
 
-  it("should transfer from Farm", () => {})
+  it("should be able to transfer back", () => {
+    farmChain.createFarm("Test Farm", 1000).then(async () => {
+      var farmContractAddress = await farmChain.ownerToFarm(account);
+      var farm = Farm.at(farmContractAddress);
 
-  it("should fail multiple farm with one account", () => {});
+      await farm.transfer(accounts[1], 1000, { from: account });
+      
+      await farm.transfer(account, 500, { from: accounts[1] }).then(async (trx) => {
+        afterBalance = await farm.balanceOf(account);
+        account2Balance = await farm.balanceOf(accounts[1]);
 
-  it("should allow owner to withdraw Ethereum|FarmCoin", () => {});
+        assert.equal(afterBalance.toNumber(), 500, "balance of account 1 should be 1000");
+        assert.equal(account2Balance.toNumber(), 500, "balance of account 2 should be 1000");
+      });
+    });
+  });
+
+  let tryCatch = require("./helpers/exceptions.js").tryCatch;
+  let errTypes = require("./helpers/exceptions.js").errTypes;
+
+  it("should fail multiple farm with one account", async () => {
+    await farmChain.createFarm("Test Farm 1", 1000);
+    await tryCatch(farmChain.createFarm("Test Farm 2", 100000), errTypes.revert);
+  });
+
+  it.skip("should allow owner to withdraw Ethereum|FarmCoin", () => {
+
+  });
 
   it("should fail without name", async function() {
-    return FarmChain.deployed().then(async function(instance) {
-      // await expectThrow(await instance.createFarm.call("", 1000));
-    })
+    await tryCatch(farmChain.createFarm("", 1), errTypes.revert);
+  });
+  
+  it("should fail without total supply", async function() {
+    await tryCatch(farmChain.createFarm("Test Farm", 0), errTypes.revert);
   });
 });
